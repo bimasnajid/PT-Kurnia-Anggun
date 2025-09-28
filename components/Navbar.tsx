@@ -51,7 +51,7 @@ export default function Navbar() {
             />
           </div>
           <Link href="/" className="text-2xl font-bold text-black">
-            PT KURNIA ANGGUN
+            PT.KURNIA ANGGUN
           </Link>
         </div>
 

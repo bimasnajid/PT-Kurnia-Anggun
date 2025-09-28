@@ -2,14 +2,16 @@
 
 // bahasa
 import { useTranslation } from "next-i18next";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Features from "../components/Features";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import Testimonials from "@/components/Testimonials";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import About from "@/components/AboutSection";
+
+// halaman Pendukung
 import ProdukSection from "@/components/ProdukSection";
-import Testimonials from "../components/Testimonials";
-import Footer from "../components/Footer";
-import Contact from "../components/Contack";
-import About from "../components/AboutSection";
 
 export default function Home() {
   const { t } = useTranslation("common");

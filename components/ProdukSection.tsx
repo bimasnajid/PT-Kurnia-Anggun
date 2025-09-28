@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 
 type Product = {
   name: string;
@@ -11,7 +12,7 @@ type Product = {
   description: string;
   rating: number; // 0-5
   orderPercentage: number; // 0-100
-  href: string;
+  href: string; // link ke halaman detail produk
 };
 
 const products: Product[] = [
@@ -22,7 +23,7 @@ const products: Product[] = [
     description: "Landing page modern dan responsif untuk bisnis Anda.",
     rating: 4.5,
     orderPercentage: 75,
-    href: "/products/keane",
+    href: "keane", // cukup pakai slug
   },
   {
     name: "Basque",
@@ -31,7 +32,7 @@ const products: Product[] = [
     description: "Company profile profesional dengan desain elegan.",
     rating: 4.7,
     orderPercentage: 80,
-    href: "/products/basque",
+    href: "basque",
   },
   {
     name: "Milano",
@@ -40,7 +41,7 @@ const products: Product[] = [
     description: "E-commerce lengkap dengan fitur pembayaran online.",
     rating: 4.8,
     orderPercentage: 85,
-    href: "/products/milano",
+    href: "milano",
   },
   {
     name: "Blake",
@@ -49,7 +50,7 @@ const products: Product[] = [
     description: "Website portfolio kreatif untuk personal dan bisnis.",
     rating: 4.3,
     orderPercentage: 70,
-    href: "/products/blake",
+    href: "blake",
   },
   {
     name: "Dawson",
@@ -58,7 +59,7 @@ const products: Product[] = [
     description: "Website event dan promosi dengan desain interaktif.",
     rating: 4.6,
     orderPercentage: 78,
-    href: "/products/dawson",
+    href: "dawson",
   },
   {
     name: "SH",
@@ -67,7 +68,7 @@ const products: Product[] = [
     description: "Sistem manajemen website lengkap dan mudah digunakan.",
     rating: 4.9,
     orderPercentage: 90,
-    href: "/products/sh",
+    href: "sh",
   },
 ];
 
@@ -131,10 +132,15 @@ function renderStars(rating: number) {
 }
 
 export default function ProdukSection() {
+  const { locale } = useParams(); // ambil locale aktif, misalnya "id" atau "en"
+
   return (
-    <section id="products" className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen">
+    <section
+      id="products"
+      className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen"
+    >
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-wahite">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
           Produk Kami
         </h2>
 
@@ -172,7 +178,11 @@ export default function ProdukSection() {
                 {product.orderPercentage}% orders
               </p>
 
-              <Link href="/produk" className="mt-auto">
+              {/* 🔗 tombol menuju halaman detail produk sesuai locale */}
+              <Link
+                href={`/${locale}/products/${product.href}`}
+                className="mt-auto"
+              >
                 <motion.span
                   whileTap={{ scale: 0.95 }}
                   className="inline-block bg-blue-600 text-white px-5 py-2 rounded-md font-semibold hover:bg-blue-700 transition"

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -26,53 +26,29 @@ const testimonials = [
 ];
 
 const clientLogos = [
-  {
-    src: "/Client/ARHS_BIG.png",
-    alt: "ARHS",
-    width: 120,
-    height: 60,
-  },
-  {
-    src: "/Client/Create&Barrel.png",
-    alt: "IKEA",
-    width: 140,
-    height: 50,
-  },
-  {
-    src: "/Client/ARHS_BIG.png",
-    alt: "ARHS",
-    width: 120,
-    height: 60,
-  },
-  {
-    src: "/Client/Create&Barrel.png",
-    alt: "IKEA",
-    width: 140,
-    height: 50,
-  },
-  {
-    src: "/Client/ARHS_BIG.png",
-    alt: "ARHS",
-    width: 120,
-    height: 60,
-  },
+  { src: "/Client/ARHS_BIG.png", alt: "ARHS", width: 120, height: 60 },
+  { src: "/Client/Create&Barrel.png", alt: "cb", width: 140, height: 60 },
+  { src: "/Client/ballard.png", alt: "ballard", width: 140, height: 60 },
+  { src: "/Client/front.png", alt: "front", width: 140, height: 60 },
+  { src: "/Client/lexing.png", alt: "Lexing", width: 120, height: 60 },
+  { src: "/Client/williams.png", alt: "Williams", width: 120, height: 60 },
 ];
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
 
-  const nextTestimonial = () => {
-    setIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
+  // Auto slide setiap 10 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % testimonials.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
       id="testimonials"
-      className="relative bg-gray-50 py-20 px-6 md:px-12 lg:px-20 h-[100vh]"
+      className="relative bg-white py-16 px-6 md:px-12 lg:px-20"
     >
       {/* Header */}
       <motion.div
@@ -91,52 +67,40 @@ export default function Testimonials() {
       </motion.div>
 
       {/* Testimonial Slider */}
-      <div className="relative flex justify-center items-center">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl text-center"
-        >
-          <div className="w-20 h-20 relative mx-auto mb-4 rounded-full overflow-hidden">
-            <Image
-              src="/Client/buyyer.png"
-              alt={testimonials[index].name}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <p className="text-gray-600 italic mb-4">
-            “{testimonials[index].text}”
-          </p>
-          <h4 className="font-semibold text-lg text-gray-800">
-            {testimonials[index].name}
-          </h4>
-          <span className="text-sm text-gray-500">
-            {testimonials[index].company}
-          </span>
-        </motion.div>
-
-        {/* Navigation Buttons */}
-        <button
-          onClick={prevTestimonial}
-          className="absolute left-0 md:-left-10 bg-white shadow p-2 rounded-full hover:bg-gray-100"
-        >
-          ◀
-        </button>
-        <button
-          onClick={nextTestimonial}
-          className="absolute right-0 md:-right-10 bg-white shadow p-2 rounded-full hover:bg-gray-100"
-        >
-          ▶
-        </button>
+      <div className="relative flex justify-center items-center px-2 sm:px-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.6 }}
+            className="bg-gray-900 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-2xl text-center"
+          >
+            <div className="w-20 h-20 relative mx-auto mb-4 rounded-full overflow-hidden">
+              <Image
+                src="/Client/buyyer.png"
+                alt="buyyer"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <p className="text-white italic mb-4 text-sm sm:text-base leading-relaxed">
+              “{testimonials[index].text}”
+            </p>
+            <h4 className="font-semibold text-base sm:text-lg text-yellow-300">
+              {testimonials[index].name}
+            </h4>
+            <span className="text-xs sm:text-sm text-yellow-300">
+              {testimonials[index].company}
+            </span>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Client Logos */}
       <motion.div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center mt-16"
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center mt-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -153,7 +117,7 @@ export default function Testimonials() {
               alt={logo.alt}
               width={logo.width}
               height={logo.height}
-              className="object-contain"
+              className="object-contain max-h-12 sm:max-h-16"
             />
           </motion.div>
         ))}

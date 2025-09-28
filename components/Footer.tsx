@@ -2,14 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  // Facebook,
-  // Instagram,
-  // Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   const container = {
@@ -24,6 +18,20 @@ export default function Footer() {
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const pathname = usePathname();
+
+  // fungsi untuk smooth scroll
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
@@ -78,56 +86,52 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-white transition">
-                Tentang Kami
-              </Link>
+              {pathname === "/" ? (
+                <a
+                  href="#about"
+                  onClick={(e) => handleScroll(e, "about")}
+                  className="hover:text-white transition cursor-pointer"
+                >
+                  Tentang Kami
+                </a>
+              ) : (
+                <Link href="/#about" className="hover:text-white transition">
+                  Tentang Kami
+                </Link>
+              )}
             </li>
             <li>
-              <Link href="/products" className="hover:text-white transition">
-                Produk
-              </Link>
+              {pathname === "/" ? (
+                <a
+                  href="#products"
+                  onClick={(e) => handleScroll(e, "products")}
+                  className="hover:text-white transition cursor-pointer"
+                >
+                  Produk
+                </a>
+              ) : (
+                <Link href="/#products" className="hover:text-white transition">
+                  Produk
+                </Link>
+              )}
             </li>
             <li>
-              <Link href="/contact" className="hover:text-white transition">
-                Kontak
-              </Link>
+              {pathname === "/" ? (
+                <a
+                  href="#contact"
+                  onClick={(e) => handleScroll(e, "contact")}
+                  className="hover:text-white transition cursor-pointer"
+                >
+                  Kontak
+                </a>
+              ) : (
+                <Link href="/#contact" className="hover:text-white transition">
+                  Kontak
+                </Link>
+              )}
             </li>
           </ul>
         </motion.div>
-
-        {/* Social Media */}
-        {/* <motion.div variants={item}>
-          <h3 className="text-lg font-semibold text-white mb-4">Ikuti Kami</h3>
-          <div className="flex gap-4">
-            <motion.a
-              href="https://facebook.com"
-              target="_blank"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition"
-            >
-              <Facebook className="w-5 h-5" />
-            </motion.a>
-            <motion.a
-              href="https://instagram.com"
-              target="_blank"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 bg-gray-800 rounded-full hover:bg-pink-600 transition"
-            >
-              <Instagram className="w-5 h-5" />
-            </motion.a>
-            <motion.a
-              href="https://linkedin.com"
-              target="_blank"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 bg-gray-800 rounded-full hover:bg-blue-500 transition"
-            >
-              <Linkedin className="w-5 h-5" />
-            </motion.a>
-          </div>
-        </motion.div> */}
       </motion.div>
 
       {/* Copyright */}
@@ -142,3 +146,4 @@ export default function Footer() {
     </footer>
   );
 }
+

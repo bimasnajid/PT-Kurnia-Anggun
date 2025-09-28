@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <div>
             <Image
-              src="/images/founder.jpg"
+              src="/projectImages/Keane/72MediaConsoleStorage.jpg"
               alt="Pendiri PT Kurnia Anggun"
               width={600}
               height={400}
@@ -118,7 +118,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
               <Image
-                src="/images/divisi-produksi.jpg"
+                src="/projectImages/Keane/72MediaConsoleStorage.jpg"
                 alt="Divisi Produksi"
                 width={400}
                 height={250}
@@ -132,7 +132,7 @@ export default function AboutPage() {
             </div>
             <div className="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
               <Image
-                src="/images/divisi-desain.jpg"
+                src="/projectImages/Keane/72MediaConsoleStorage.jpg"
                 alt="Divisi Desain"
                 width={400}
                 height={250}
@@ -146,7 +146,7 @@ export default function AboutPage() {
             </div>
             <div className="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
               <Image
-                src="/images/divisi-distribusi.jpg"
+                src="/projectImages/Keane/72MediaConsoleStorage.jpg"
                 alt="Divisi Distribusi"
                 width={400}
                 height={250}
@@ -166,60 +166,109 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold mb-8 text-center">
             Produk Unggulan
           </h2>
+          {/* Contoh  penerapan untuk memnbedakan image di setiap products */}
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {["Keane", "Basque", "Milano", "Blake", "Dawson", "SH"].map(
-              (product, i) => (
-                <motion.div
-                  key={i}
-                  className="p-4 border rounded-lg hover:shadow-md transition"
-                  initial={{ y: 50, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <Image
-                    src={`/projectImages/${product}/CanopyKing.jpg`}
-                    alt={product}
-                    width={400}
-                    height={300}
-                    className="rounded-md mb-4 object-cover"
-                  />
-                  <h3 className="font-bold text-lg text-center">{product}</h3>
-                </motion.div>
-              )
-            )}
+            {[
+              { name: "Keane", img: "/projectImages/Keane/Narrow.jpg" },
+              { name: "Basque", img: "/projectImages/Basque/Sml48.jpg" },
+              { name: "Milano", img: "/projectImages/Milano/Sml48.jpg" },
+              { name: "Blake", img: "/projectImages/Blake/Sml48.jpg" },
+              { name: "Dawson", img: "/projectImages/Dawson/Sml48.jpg" },
+              { name: "SH", img: "/projectImages/SH/Sml48.jpg" },
+            ].map((product, i) => (
+              <motion.div
+                key={i}
+                className="p-4 border rounded-lg hover:shadow-md transition"
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Image
+                  src={product.img}
+                  alt={product.name}
+                  width={400}
+                  height={300}
+                  className="rounded-md mb-4 object-cover"
+                />
+                <h3 className="font-bold text-lg text-center">
+                  {product.name}
+                </h3>
+              </motion.div>
+            ))}
           </div>
         </div>
 
         {/* Kayu */}
+        {/* Kayu */}
         <div className="mb-16">
-          <h2 className="text-3xl font-semibold mb-4">Jenis Kayu</h2>
-          <p className="text-lg leading-relaxed mb-6 text-justify">
+          <h2 className="text-3xl font-semibold mb-8 text-center">
+            Jenis Kayu
+          </h2>
+          <p className="text-lg leading-relaxed mb-10 text-center max-w-3xl mx-auto">
             Kami menggunakan kayu pilihan yang telah melewati proses legal dan
             ramah lingkungan untuk memastikan furnitur kami kuat, tahan lama,
             serta memiliki nilai estetika tinggi:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-lg">
-            <li>
-              Kayu Jati – tahan cuaca, mewah, sangat diminati pasar global.
-            </li>
-            <li>Kayu Mahoni – halus, ringan, bernilai seni tinggi.</li>
-            <li>Kayu Trembesi – serat alami unik, artistik, eksklusif.</li>
-            <li>Kayu Akasia – ramah lingkungan, fleksibel, modern.</li>
-          </ul>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              {
+                name: "Kayu Jati",
+                desc: "Tahan cuaca, mewah, sangat diminati pasar global.",
+                img: "/images/kayu/jati.jpg",
+              },
+              {
+                name: "Kayu Mahoni",
+                desc: "Halus, ringan, bernilai seni tinggi.",
+                img: "/images/kayu/mahoni.jpg",
+              },
+              {
+                name: "Kayu Trembesi",
+                desc: "Serat alami unik, artistik, eksklusif.",
+                img: "/images/kayu/trembesi.jpg",
+              },
+              {
+                name: "Kayu Akasia",
+                desc: "Ramah lingkungan, fleksibel, modern.",
+                img: "/images/kayu/akasia.jpg",
+              },
+            ].map((wood, i) => (
+              <motion.div
+                key={i}
+                className="p-4 border rounded-xl shadow-sm hover:shadow-lg transition bg-white"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Image
+                  src={wood.img}
+                  alt={wood.name}
+                  width={400}
+                  height={250}
+                  className="rounded-lg mb-4 object-cover h-40 w-full"
+                />
+                <h3 className="font-bold text-lg text-center">{wood.name}</h3>
+                <p className="text-sm text-gray-600 text-center mt-2">
+                  {wood.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Galeri */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <Image
-            src="/images/showroom.jpg"
+            src="/projectImages/Keane/72MediaConsoleStorage.jpg"
             alt="Showroom PT Kurnia Anggun"
             width={600}
             height={400}
             className="rounded-lg shadow-md object-cover"
           />
           <Image
-            src="/images/workshop.jpg"
+            src="/projectImages/Keane/72MediaConsoleStorage.jpg"
             alt="Workshop PT Kurnia Anggun"
             width={600}
             height={400}
@@ -237,9 +286,13 @@ export default function AboutPage() {
             terpercaya Anda dalam menciptakan furnitur berkualitas tinggi yang
             elegan, fungsional, dan bernilai investasi.
           </p>
-          <Link href="/contact">
-            <MotionButton text="Hubungi Kami" />
-          </Link>
+          {/* Button */}
+          <div className="mt-12 flex justify-center">
+            <Link href="/#contact" scroll={true}>
+              <MotionButton text="Hubungi Kami" />
+            </Link>
+          </div>
+          {/* ini adalah contoh untuk membut button  */}
         </div>
       </motion.div>
     </section>

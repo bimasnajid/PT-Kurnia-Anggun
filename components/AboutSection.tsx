@@ -8,7 +8,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-20 bg-gray-100 text-center min-h-screen"
+      className="relative py-20 bg-gray-900 text-center min-h-screen"
     >
       <motion.div
         className="max-w-6xl mx-auto px-6"
@@ -18,21 +18,17 @@ export default function AboutSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Header */}
-        <h2 className="text-3xl font-extrabold mb-6 lg:text-5xl text-gray-900">Tentang Kami</h2>
-        <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-extrabold mb-6 lg:text-4xl text-yellow-300">Tentang Kami</h2>
+        <p className="text-lg text-white mb-10 max-w-2xl mx-auto">
           PT Kurnia Anggun adalah perusahaan yang bergerak di bidang Furniture
           dan Rattan dengan fokus pada kualitas, inovasi, dan keberlanjutan.
         </p>
 
         {/* Visi & Misi */}
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-center text-gray-800 mb-12">
-            Visi & Misi Perusahaan
-          </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start relative">
             {/* Garis Tengah hanya di desktop */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-gray-300" />
+            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-yellow-300" />
 
             {/* Visi */}
             <motion.div
@@ -42,10 +38,10 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="lg:text-right text-center"
             >
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-blue-800">
-                Visi
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-yellow-300">
+                VISI
               </h3>
-              <p className="text-gray-700 leading-relaxed max-w-md lg:ml-auto mx-auto text-justify lg:text-right">
+              <p className="text-white leading-relaxed max-w-md lg:ml-auto mx-auto text-justify lg:text-right">
                 Menjadi perusahaan mebel kayu dan rotan terkemuka dari Indonesia
                 yang diakui secara internasional, menghadirkan produk berkelas
                 dunia yang{" "}
@@ -63,10 +59,10 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="lg:text-left text-center"
             >
-              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-blue-800">
-                Misi
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-yellow-300">
+                MISI
               </h3>
-              <ul className="text-gray-700 leading-relaxed space-y-3 max-w-md lg:mr-auto mx-auto list-decimal list-inside text-left">
+              <ul className="text-white leading-relaxed space-y-3 max-w-md lg:mr-auto mx-auto list-decimal list-inside text-left">
                 <li>
                   Menghasilkan furniture kayu dan rotan berkualitas ekspor
                   dengan desain modern.
@@ -85,7 +81,7 @@ export default function AboutSection() {
               </ul>
             </motion.div>
           </div>
-        </div>
+
 
         {/* Button */}
         <div className="mt-12 flex justify-center">
